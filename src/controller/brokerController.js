@@ -2,7 +2,7 @@ import axios from "axios";
 
 let clients = [];
 let mensagens = [];
-const url ="http://localhost";
+const url ="http://10.128.0.33";
 
 async function fazerBackup(port){
     if(port == 3000){
