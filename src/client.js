@@ -9,8 +9,8 @@ routes(app);
 let brokerPrimario = 3000;
 let brokerSecundario = 3001;
 let interacoes = 0;
-let  urlPrimario = "10.128.0.27";
-let  urlSecundario = "10.128.0.33";
+let  urlPrimario = "http://10.128.0.27";
+let  urlSecundario = "http://10.128.0.33";
 
 const questions = [
     {
