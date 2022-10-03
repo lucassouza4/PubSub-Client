@@ -2,12 +2,12 @@ import axios from "axios";
 
 let clients = [];
 let mensagens = [];
-const url ="http://localhost:";
+const url ="http://localhost";
 
 async function fazerBackup(port){
-    if(port == 80){
+    if(port == 3000){
         try {
-            await axios.put(`${url}81/backup`,mensagens,
+            await axios.put(`${url}:3000/backup`,mensagens,
             {
                 headers: {
                     broker: port // NECESSARIO ??? --------------------------------

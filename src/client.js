@@ -9,8 +9,8 @@ routes(app);
 let brokerPrimario = 3000;
 let brokerSecundario = 3001;
 let interacoes = 0;
-const urlPrimario = "10.128.0.27:";
-const urlSecundario = "10.128.0.27:";
+let  urlPrimario = "10.128.0.27";
+let  urlSecundario = "10.128.0.33";
 
 const questions = [
     {
@@ -22,7 +22,7 @@ const questions = [
 
 async function conectarbrokerPrimario() {
     try {
-        let resp = await axios.post(`${urlPrimario}${brokerPrimario}/sub/${client.port}`);
+        let resp = await axios.post(`${urlPrimario}:${brokerPrimario}/sub/${client.port}`);
         console.log(`Client conectado na porta ${client.port}`);
         console.log(resp.data);
     } catch (error) {
@@ -34,12 +34,15 @@ async function conectarbrokerSecundario() {
     let aux = brokerPrimario;
     brokerPrimario = brokerSecundario;
     brokerSecundario = aux;
+    aux = urlPrimario;
+    urlPrimario = urlSecundario;
+    urlSecundario = aux;
     conectarbrokerPrimario();
 }
 
 async function unsubscribe() {
     try {
-        await axios.delete(`${urlPrimario}${brokerPrimario}/${client.port}`);
+        await axios.delete(`${urlPrimario}:${brokerPrimario}/${client.port}`);
         console.log("client desconectado !");
         server.close();
     } catch (error) {
@@ -51,7 +54,7 @@ async function pub() {
     return setTimeout(
         async function () {
             try {
-                let resp = await axios.post(`${urlPrimario}${brokerPrimario}/${client.port}`,
+                let resp = await axios.post(`${urlPrimario}:${brokerPrimario}/${client.port}`,
                 {
                     broker: brokerPrimario,
                 });
