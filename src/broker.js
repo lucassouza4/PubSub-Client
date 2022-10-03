@@ -11,7 +11,7 @@ const questionBroker = [
     {
         type: 'input',
         name: 'broker',
-        message: "qual a porta do broker ? (80|81)",
+        message: "qual a porta do broker ? (3000|3001)",
     },
 ];
 
@@ -31,7 +31,7 @@ async function main(){
 let resp = await inquirer.prompt(questionBroker);
 
 const server = app.listen(resp.broker,()=>{
-    console.log(`\nBrocker ouvindo na porta ${resp.broker}\n`);
+    console.log(`\nBroker ouvindo na porta ${resp.broker}\n`);
 })
 
 main();

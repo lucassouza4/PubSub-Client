@@ -19,7 +19,7 @@ async function fazerBackup(port){
     }
 }
 
-export default class BrockerController {
+export default class BrokerController { // RENOMEAR CLASSE E ARQUIVO ------------------------
     static subscriber(req,res){
         let {id} = req.params;   
 

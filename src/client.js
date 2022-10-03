@@ -6,10 +6,11 @@ import routes from "./routes/routesClient.js";
 const app = express();
 routes(app);
 
-let brokerPrimario = 80;
-let brokerSecundario = 81;
+let brokerPrimario = 3000;
+let brokerSecundario = 3001;
 let interacoes = 0;
-const url = "http://localhost:";
+const urlPrimario = "10.128.0.27:";
+const urlSecundario = "10.128.0.27:";
 
 const questions = [
     {
@@ -21,7 +22,7 @@ const questions = [
 
 async function conectarbrokerPrimario() {
     try {
-        let resp = await axios.post(`${url}${brokerPrimario}/sub/${client.port}`);
+        let resp = await axios.post(`${urlPrimario}${brokerPrimario}/sub/${client.port}`);
         console.log(`Client conectado na porta ${client.port}`);
         console.log(resp.data);
     } catch (error) {
@@ -38,7 +39,7 @@ async function conectarbrokerSecundario() {
 
 async function unsubscribe() {
     try {
-        await axios.delete(`${url}${brokerPrimario}/${client.port}`);
+        await axios.delete(`${urlPrimario}${brokerPrimario}/${client.port}`);
         console.log("client desconectado !");
         server.close();
     } catch (error) {
@@ -50,7 +51,7 @@ async function pub() {
     return setTimeout(
         async function () {
             try {
-                let resp = await axios.post(`${url}${brokerPrimario}/${client.port}`,
+                let resp = await axios.post(`${urlPrimario}${brokerPrimario}/${client.port}`,
                 {
                     broker: brokerPrimario,
                 });

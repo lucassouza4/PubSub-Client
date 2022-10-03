@@ -1,10 +1,10 @@
-import BrockerController from "../controller/brockerController.js";
+import BrokerController from "../controller/brokerController.js";
 
 const router = (app)=>{
-    app.post('/sub/:id', BrockerController.subscriber);
-    app.post('/:id', BrockerController.consumirRecurso);
-    app.put('/backup', BrockerController.backup);
-    app.delete('/:id', BrockerController.unsubscribe);
+    app.post('/sub/:id', BrokerController.subscriber);
+    app.post('/:id', BrokerController.consumirRecurso);
+    app.put('/backup', BrokerController.backup);
+    app.delete('/:id', BrokerController.unsubscribe);
 }
 
 export default router;
