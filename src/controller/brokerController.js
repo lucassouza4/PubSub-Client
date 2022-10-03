@@ -7,7 +7,7 @@ const url ="http://10.128.0.33";
 async function fazerBackup(port){
     if(port == 3000){
         try {
-            await axios.put(`${url}:3000/backup`,mensagens,
+            await axios.put(`${url}:3001/backup`,mensagens,
             {
                 headers: {
                     broker: port // NECESSARIO ??? --------------------------------

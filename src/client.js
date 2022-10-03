@@ -60,7 +60,7 @@ async function pub() {
                 });
                 console.log(resp.data);
             } catch (error) {
-                if(brokerPrimario === 80){
+                if(brokerPrimario === 3000){
                     conectarbrokerSecundario();
                     console.log("broker primario parou de responder");
                 }
